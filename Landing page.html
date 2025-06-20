@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deepak Meena — Landing Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --main-bg: #0d0d0d;
+      --accent: #00f6ff;
+      --text: #e6e9f0;
+      --muted: #999;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--main-bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 5%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 999;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 300;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 120px 10% 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .projects ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    .projects li {
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      padding: 2rem 10%;
+      text-align: center;
+      background: #111;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 5%;
+      }
+
+      nav {
+        margin-top: 0.5rem;
+      }
+
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Deepak Meena</h1>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero">
+    <h2>Crafting Code. Building Futures.</h2>
+    <p>Hey, I'm Deepak — a CSE student & passionate full-stack developer. From sculpting UIs to architecting backends, I build with code and creativity.</p>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <p>
+      I'm a B.Tech CSE student at Amity University, Greater Noida. I completed my schooling (10th & 12th) from Pragyan Public School, Jewar. Passionate about web/app/game dev, I focus on modern front-end and backend stacks, and am constantly refining my skills with every project.
+    </p>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2 class="section-title">Projects</h2>
+    <ul>
+      <li>✅ Cyberpunk Calculator UI</li>
+      <li>🌦️ Weather App (Indian art-style themed)</li>
+      <li>🧠 Personal Portfolio</li>
+      <li>⏱️ Stopwatch + Timer + Clock Web App</li>
+      <li>🎮 Tic Tac Toe — Responsive & Interactive</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p>📧 deepaksingh1712000@gmail.com</p>
+    <p>🌐 <a href="https://github.com/DeepakMeena222187" style="color: var(--accent); text-decoration: none;">GitHub</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Deepak Meena. Crafted with ☕ & ❤️
+  </footer>
+
+</body>
+</html>
