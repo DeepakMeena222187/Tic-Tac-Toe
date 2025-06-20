@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe - Deepak</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f0f2d, #1a1a40);
+      color: #e0e0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #9ac6ff;
+      text-shadow: 0 0 8px #00f7ff33;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 8px;
+      background-color: #2e2e55;
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+    }
+
+    .cell {
+      background-color: #151537;
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .cell:hover {
+      background-color: #1f1f4f;
+      transform: scale(1.05);
+    }
+
+    .cell.x {
+      color: #8be9fd;
+    }
+
+    .cell.o {
+      color: #ff79c6;
+    }
+
+    .status {
+      margin-top: 20px;
+      font-size: 1.3rem;
+      text-align: center;
+    }
+
+    .restart {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #4444aa;
+      color: white;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .restart:hover {
+      background-color: #5a5af7;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Tic Tac Toe</h1>
+
+  <div class="board" id="board">
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+  </div>
+
+  <div class="status" id="status">Player X's turn</div>
+  <button class="restart" onclick="startGame()">Restart Game</button>
+
+  <script>
+    const board = document.querySelector("#board");
+    const statusText = document.querySelector("#status");
+    const cellElements = document.querySelectorAll("[data-cell]");
+    let xTurn;
+
+    const WINNING_COMBINATIONS = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ];
+
+    function startGame() {
+      xTurn = true;
+      cellElements.forEach(cell => {
+        cell.classList.remove('x', 'o');
+        cell.textContent = '';
+        cell.addEventListener('click', handleClick, { once: true });
+      });
+      statusText.textContent = "Player X's turn";
+    }
+
+    function handleClick(e) {
+      const cell = e.target;
+      const currentClass = xTurn ? 'x' : 'o';
+      placeMark(cell, currentClass);
+      if (checkWin(currentClass)) {
+        endGame(false);
+      } else if (isDraw()) {
+        endGame(true);
+      } else {
+        swapTurns();
+      }
+    }
+
+    function placeMark(cell, currentClass) {
+      cell.classList.add(currentClass);
+      cell.textContent = currentClass.toUpperCase();
+    }
+
+    function swapTurns() {
+      xTurn = !xTurn;
+      statusText.textContent = `Player ${xTurn ? "X" : "O"}'s turn`;
+    }
+
+    function checkWin(currentClass) {
+      return WINNING_COMBINATIONS.some(combination => {
+        return combination.every(index => {
+          return cellElements[index].classList.contains(currentClass);
+        });
+      });
+    }
+
+    function isDraw() {
+      return [...cellElements].every(cell => {
+        return cell.classList.contains('x') || cell.classList.contains('o');
+      });
+    }
+
+    function endGame(draw) {
+      if (draw) {
+        statusText.textContent = "It's a draw!";
+      } else {
+        statusText.textContent = `Player ${xTurn ? "X" : "O"} wins!`;
+      }
+
+      cellElements.forEach(cell => {
+        cell.removeEventListener('click', handleClick);
+      });
+    }
+
+    startGame();
+  </script>
+</body>
+</html>
